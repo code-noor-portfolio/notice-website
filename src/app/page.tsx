@@ -1,29 +1,29 @@
 import { Hero } from '@/components/sections/Hero'
-import { HowItWorks } from '@/components/sections/HowItWorks'
-import { DataLocal } from '@/components/sections/DataLocal'
+import { ActivityThread } from '@/components/sections/ActivityThread'
 import { WhyNotice } from '@/components/sections/WhyNotice'
-import { Features } from '@/components/sections/Features'
 import { ElectronicInvoicing } from '@/components/sections/ElectronicInvoicing'
-import { Comparison } from '@/components/sections/Comparison'
-import { Pricing } from '@/components/sections/Pricing'
-import { Story } from '@/components/sections/Story'
-import { Faq } from '@/components/sections/Faq'
-import { CtaFinal } from '@/components/sections/CtaFinal'
+import { YourData } from '@/components/sections/YourData'
+import { ForArtisans } from '@/components/sections/ForArtisans'
+import { TryNotice } from '@/components/sections/TryNotice'
+import { LicenseOffer } from '@/components/sections/LicenseOffer'
+import { Origin } from '@/components/sections/Origin'
+import { MiniFaq } from '@/components/sections/MiniFaq'
+import { FinalCta } from '@/components/sections/FinalCta'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <HowItWorks />
-      <DataLocal />
+      <ActivityThread />
       <WhyNotice />
-      <Features />
       <ElectronicInvoicing />
-      <Comparison />
-      <Story />
-      <Pricing />
-      <Faq limit={6} />
-      <CtaFinal />
+      <YourData />
+      <ForArtisans />
+      <TryNotice />
+      <LicenseOffer />
+      <Origin />
+      <MiniFaq />
+      <FinalCta />
     </>
   )
 }

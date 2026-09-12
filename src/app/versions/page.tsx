@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { PendingLink } from '@/components/ui/PendingLink'
 
 export const metadata: Metadata = {
-  title: 'Historique des versions — Notice',
+  title: 'Historique des versions',
 }
 
 export default function VersionsPage() {
@@ -24,12 +24,12 @@ export default function VersionsPage() {
           <p className="text-sm text-slate-secondary">
             Première version publique — devis, factures, Factur-X, licence à vie.
           </p>
-          <Link
+          <PendingLink
             href="/telecharger"
             className="inline-block mt-4 text-sm text-navy-500 hover:underline"
           >
             Page téléchargement →
-          </Link>
+          </PendingLink>
         </div>
       </div>
     </section>

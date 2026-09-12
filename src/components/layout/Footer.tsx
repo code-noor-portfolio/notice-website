@@ -1,23 +1,24 @@
-import Link from 'next/link'
+import { Logo } from '@/components/ui/Logo'
+import { PendingLink } from '@/components/ui/PendingLink'
+import { SITE } from '@/constants/site'
 
 const columns = [
   {
     title: 'Produit',
     links: [
-      { label: 'Fonctionnalités', href: '/#fonctionnalites' },
+      { label: 'Fonctionnalités', href: '/fonctionnalites' },
       { label: 'Tarifs', href: '/tarifs' },
+      { label: 'Facturation électronique', href: '/facturation-electronique' },
       { label: 'Télécharger', href: '/telecharger' },
-      { label: 'FAQ', href: '/faq' },
-      { label: 'Roadmap', href: '/roadmap' },
-      { label: 'Versions', href: '/versions' },
     ],
   },
   {
-    title: 'Support',
+    title: 'Notice',
     links: [
+      { label: 'À propos', href: '/a-propos' },
+      { label: 'FAQ', href: '/faq' },
       { label: 'Documentation', href: '/documentation' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Support', href: '/contact' },
     ],
   },
   {
@@ -25,43 +26,38 @@ const columns = [
     links: [
       { label: 'Mentions légales', href: '/mentions-legales' },
       { label: 'Confidentialité', href: '/confidentialite' },
-      { label: 'CGU', href: '/cgu' },
+      { label: 'CGV', href: '/cgv' },
     ],
   },
 ]
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-white">
-      <div className="container-content py-16">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
+    <footer className="bg-night-background text-night-text">
+      <div className="container-content py-14 md:py-16">
+        <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center">
-                <span className="text-white text-xs font-bold">N</span>
-              </div>
-              <span className="text-lg font-bold">Notice</span>
-            </div>
-            <p className="text-sm text-white/50 leading-relaxed">
-              Logiciel de devis et facturation pour artisans.
-              Local. Sans abonnement. Licence à vie.
+            <Logo inverted />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-night-secondary">
+              L’outil de gestion pensé pour les artisans indépendants.
+              Tout ce dont vous avez besoin. Rien de plus.
             </p>
           </div>
 
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h3 className="text-sm font-semibold text-white/80 mb-4">
-                {col.title}
-              </h3>
+          {columns.map((column) => (
+            <div key={column.title}>
+              <p className="mb-3 text-sm font-medium text-night-text">
+                {column.title}
+              </p>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.href + link.label}>
-                    <Link
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <PendingLink
                       href={link.href}
-                      className="text-sm text-white/45 hover:text-white transition-colors duration-150"
+                      className="text-sm text-night-secondary transition-colors duration-150 hover:text-night-primary"
                     >
                       {link.label}
-                    </Link>
+                    </PendingLink>
                   </li>
                 ))}
               </ul>
@@ -69,8 +65,10 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/35">
-          <p>© {new Date().getFullYear()} Notice — Code Noor</p>
+        <div className="mt-12 flex flex-col justify-between gap-2 border-t border-night-border pt-6 text-xs text-night-secondary md:flex-row">
+          <p>
+            © {new Date().getFullYear()} {SITE.name} — {SITE.company}
+          </p>
           <p>notice.code-noor.com</p>
         </div>
       </div>

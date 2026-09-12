@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Documentation — Notice',
+  title: 'Documentation',
   description: 'Documentation Notice : installation, licence, Factur-X.',
 }
 

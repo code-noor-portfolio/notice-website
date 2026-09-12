@@ -2,26 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-background: #f8f9fb;
+  --color-surface: #ffffff;
+  --color-detail: #f4f6f8;
+  --color-border: #e8ebef;
+  --color-separator: #dee3e8;
+  --color-fg: #181b20;
+  --color-fg-strong: #313843;
+  --color-fg-secondary: #5d6675;
+  --color-fg-tertiary: #8b94a3;
+  --color-primary: #356878;
+  --color-primary-hover: #2b5664;
+  --color-muted: #9faab8;
+}
+
+.dark {
+  --color-background: #1a222c;
+  --color-surface: #202b38;
+  --color-detail: #1d2631;
+  --color-border: #313c49;
+  --color-separator: #394656;
+  --color-fg: #f4f6f8;
+  --color-fg-strong: #e2e7ed;
+  --color-fg-secondary: #b6c0cb;
+  --color-fg-tertiary: #8893a2;
+  --color-primary: #4f8a9a;
+  --color-primary-hover: #6fa6b4;
+  --color-muted: #9faab8;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
   }
+
   body {
-    @apply font-sans text-slate-text antialiased bg-white;
+    @apply bg-background font-sans text-fg antialiased;
   }
+
   h1,
   h2,
   h3,
   h4 {
-    @apply font-semibold tracking-tight;
+    @apply font-semibold tracking-tight text-fg;
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #f8f9fb, 0 0 0 4px rgb(53 104 120 / 0.4);
   }
 }
 
 @layer utilities {
   .container-content {
-    @apply max-w-content mx-auto px-6;
+    @apply mx-auto max-w-content px-5 sm:px-6 lg:px-8;
   }
+
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-16 md:py-24;
   }
 }

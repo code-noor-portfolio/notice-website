@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Notice',
+  title: 'FAQ',
   description: 'Questions fréquentes sur Notice : licence, données, Factur-X.',
 }
 

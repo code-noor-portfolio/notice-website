@@ -3,7 +3,7 @@ import { Monitor, Apple, Check } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Télécharger Notice',
+  title: 'Télécharger',
   description: 'Téléchargez Notice pour Windows et macOS.',
 }
 
@@ -26,9 +26,8 @@ export default function TelechargerPage() {
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-16">
-          <a
-            href="#"
-            className="flex items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
+          <div
+            className="flex cursor-pointer items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
             aria-label="Télécharger Notice pour Windows"
           >
             <div className="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center">
@@ -38,10 +37,9 @@ export default function TelechargerPage() {
               <p className="font-semibold text-slate-text">Windows</p>
               <p className="text-xs text-slate-secondary">.exe · Windows 10 / 11</p>
             </div>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
+          </div>
+          <div
+            className="flex cursor-pointer items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
             aria-label="Télécharger Notice pour macOS"
           >
             <div className="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center">
@@ -51,7 +49,7 @@ export default function TelechargerPage() {
               <p className="font-semibold text-slate-text">macOS</p>
               <p className="text-xs text-slate-secondary">.dmg · macOS 12+</p>
             </div>
-          </a>
+          </div>
         </div>
 
         <h2 className="text-xl font-bold text-slate-text mb-4">Installation</h2>

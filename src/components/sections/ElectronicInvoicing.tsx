@@ -1,84 +1,93 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FileCode2, FileJson, FileType } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Section } from '@/components/ui/Section'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 
-const formats = [
+const STEPS = [
   {
-    icon: FileCode2,
-    name: 'Factur-X',
-    badge: 'Recommandé',
-    description: 'PDF/A-3 avec XML embarqué — lisible et machine.',
+    title: 'Créez votre facture',
+    text: 'Préparez votre facture directement dans Notice.',
   },
   {
-    icon: FileJson,
-    name: 'UBL 2.1',
-    badge: null,
-    description: 'Format XML standard pour l’échange B2B.',
+    title: 'Exportez en Factur-X',
+    text: 'Générez votre facture dans un format adapté aux échanges électroniques.',
   },
   {
-    icon: FileType,
-    name: 'CII',
-    badge: null,
-    description: 'Cross Industry Invoice — conforme aux obligations.',
+    title: 'Choisissez votre solution',
+    text: 'Utilisez ensuite la solution de transmission qui correspond à votre activité.',
   },
 ]
 
 export function ElectronicInvoicing() {
   return (
-    <section className="section-padding bg-navy-900 text-white">
-      <div className="container-content">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="text-navy-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            Facturation électronique
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-            Factures électroniques Factur-X. Conformes. Libres.
-          </h2>
-          <p className="text-lg text-white/60 leading-relaxed">
-            Notice génère vos factures électroniques au format Factur-X. Vous
-            restez libre de choisir la plateforme de dépôt qui correspond à
-            votre activité.
-          </p>
-        </div>
+    <Section id="facturation-electronique" className="scroll-mt-24 bg-surface">
+      <Container>
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <ScreenshotFrame
+            src="/screens/facture.webp"
+            alt="Facture Notice, prête à être exportée au format Factur-X"
+          />
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {formats.map((fmt, i) => (
-            <motion.div
-              key={fmt.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <fmt.icon size={22} className="text-navy-500" />
-                {fmt.badge && (
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-success bg-success/10 px-2 py-1 rounded-full">
-                    {fmt.badge}
-                  </span>
-                )}
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{fmt.name}</h3>
-              <p className="text-sm text-white/55 leading-relaxed">
-                {fmt.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Button
-            href="/documentation"
-            variant="secondary"
-            className="bg-transparent border-white/20 text-white hover:bg-white/10"
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.35 }}
           >
-            En savoir plus
-          </Button>
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary">
+              Facturation électronique
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-fg md:text-[1.85rem]">
+              La facturation électronique, sans vous enfermer.
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
+              Notice vous permet de générer vos factures au format Factur-X et
+              de les utiliser avec la solution de transmission de votre choix.
+            </p>
+
+            <ol className="mt-8 space-y-5">
+              {STEPS.map((step, index) => (
+                <li key={step.title} className="flex gap-3.5">
+                  <span
+                    className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center text-[13px] font-medium text-primary"
+                    aria-hidden
+                  >
+                    {index + 1}
+                  </span>
+                  <div>
+                    <p className="text-[15px] font-medium text-fg">{step.title}</p>
+                    <p className="mt-1 text-[15px] leading-relaxed text-fg-secondary">
+                      {step.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <p className="mt-8 border-t border-border pt-6 text-sm leading-relaxed text-fg-secondary">
+              <span className="font-medium text-fg">
+                Notice n’est pas une plateforme de dématérialisation partenaire
+                (PDP).
+              </span>{' '}
+              Notice se concentre sur la gestion de votre activité et la
+              préparation de vos factures. Vous restez libre de choisir votre
+              solution de transmission.
+            </p>
+
+            <p className="mt-5">
+              <Link
+                href="/facturation-electronique"
+                className="text-sm text-fg-secondary transition-colors duration-150 hover:text-primary"
+              >
+                Comprendre la facturation électronique avec Notice →
+              </Link>
+            </p>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   )
 }

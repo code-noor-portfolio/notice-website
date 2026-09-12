@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateLicenseKey, keyPrefix } from '@/lib/license'
 import { sendLicenseEmail } from '@/lib/email'
+import { isValidSiret, normalizeSiret } from '@/lib/siret'
+import { savePurchase } from '@/lib/purchase-store'
 
 /**
  * Simulated purchase (pre-Stripe).
- *
- * Today:
- *   email → generate temp key → Resend
- *
- * Later (when licence stack is final):
- *   Stripe Checkout → webhook Cloud Function → LicenseService.issue → Resend
- *   This route becomes a thin proxy or disappears in favour of the webhook.
+ * Collects company + SIRET + email, binds the key to that SIRET, emails the artisan.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -18,18 +14,49 @@ export async function POST(req: NextRequest) {
     const email = String(body.email || '')
       .trim()
       .toLowerCase()
+    const companyName = String(body.companyName || '').trim()
+    const siret = normalizeSiret(String(body.siret || ''))
 
+    if (!companyName || companyName.length < 2 || companyName.length > 200) {
+      return NextResponse.json(
+        { error: 'Nom d’entreprise invalide' },
+        { status: 400 }
+      )
+    }
+    if (!isValidSiret(siret)) {
+      return NextResponse.json(
+        { error: 'SIRET invalide (14 chiffres, contrôle Luhn)' },
+        { status: 400 }
+      )
+    }
     if (!email || !email.includes('@') || email.length > 254) {
       return NextResponse.json({ error: 'Email invalide' }, { status: 400 })
     }
 
     const licenseKey = generateLicenseKey()
-    await sendLicenseEmail({ email, licenseKey })
+    const prefix = keyPrefix(licenseKey)
+
+    await savePurchase({
+      licenseKey,
+      keyPrefix: prefix,
+      siret,
+      companyName,
+      email,
+    })
+
+    await sendLicenseEmail({
+      email,
+      licenseKey,
+      companyName,
+      siret,
+    })
 
     // Never return the plaintext key to the browser.
     return NextResponse.json({
       success: true,
-      keyPrefix: keyPrefix(licenseKey),
+      keyPrefix: prefix,
+      companyName,
+      siret,
     })
   } catch (error) {
     console.error('Purchase error:', error)

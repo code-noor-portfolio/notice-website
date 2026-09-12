@@ -1,37 +1,41 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Sans } from 'next/font/google'
-import { Navbar } from '@/components/layout/Navbar'
+import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { SITE } from '@/constants/site'
 import '@/app/globals.css'
 
 const ibmPlex = IBM_Plex_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-ibm-plex',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Notice — Logiciel de facturation pour artisans',
+  title: {
+    default: 'Notice — Gestion pour artisans indépendants',
+    template: '%s — Notice',
+  },
   description:
-    'Créez vos devis et factures en moins de 2 minutes. 100 % local, sans abonnement, sans compte. Windows & macOS.',
+    'Notice est l’outil de gestion pensé pour les artisans indépendants. Clients, chantiers, devis, factures et maintenance — simplement. Windows & macOS, hors ligne, données locales.',
   keywords: [
-    'facturation artisan',
-    'logiciel devis facture',
+    'logiciel artisan',
+    'devis facture',
+    'gestion chantier',
     'sans abonnement',
-    'local',
-    'plombier',
-    'électricien',
+    'hors ligne',
+    'Notice',
   ],
   openGraph: {
-    title: 'Notice — Facturation pour artisans',
-    description: 'Rapide. Local. Sans abonnement.',
-    url: 'https://notice.code-noor.com',
-    siteName: 'Notice',
+    title: 'Notice — Gestion pour artisans indépendants',
+    description: SITE.tagline,
+    url: SITE.url,
+    siteName: SITE.name,
     locale: 'fr_FR',
     type: 'website',
   },
-  metadataBase: new URL('https://notice.code-noor.com'),
+  metadataBase: new URL(SITE.url),
 }
 
 export default function RootLayout({
@@ -42,8 +46,14 @@ export default function RootLayout({
   return (
     <html lang="fr" className={ibmPlex.variable}>
       <body>
-        <Navbar />
-        <main>{children}</main>
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-surface focus:px-3 focus:py-2 focus:text-sm"
+        >
+          Aller au contenu
+        </a>
+        <Header />
+        <main id="contenu">{children}</main>
         <Footer />
       </body>
     </html>

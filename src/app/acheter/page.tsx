@@ -3,7 +3,7 @@ import { PurchaseForm } from '@/components/PurchaseForm'
 import { PRICING, formatPrice } from '@/constants/pricing'
 
 export const metadata: Metadata = {
-  title: 'Acheter Notice — Licence à vie',
+  title: 'Acheter Notice',
   description: `Achetez Notice pour ${formatPrice(PRICING.desktopPrice)}. Licence à vie, 2 ordinateurs, sans abonnement.`,
 }
 

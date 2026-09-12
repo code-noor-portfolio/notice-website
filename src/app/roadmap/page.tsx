@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Roadmap — Notice',
+  title: 'Roadmap',
 }
 
 const items = [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { PRICING, formatPrice } from '@/constants/pricing'
 
 export const metadata: Metadata = {
-  title: 'CGU — Notice',
+  title: 'CGU',
 }
 
 export default function CguPage() {

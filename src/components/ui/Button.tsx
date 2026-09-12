@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { isCommerceHref } from '@/constants/site'
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'ghost'
@@ -25,28 +26,36 @@ export function Button({
   'aria-label': ariaLabel,
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50'
 
   const variants = {
-    primary: 'bg-navy-700 text-white hover:bg-navy-900 shadow-sm',
+    primary: 'bg-primary text-white hover:bg-primary-hover',
     secondary:
-      'bg-white text-slate-text border border-slate-border hover:bg-slate-50 shadow-sm',
-    ghost: 'text-navy-500 hover:text-navy-700 hover:bg-navy-50',
+      'border border-border bg-surface text-fg-strong hover:bg-detail',
+    ghost: 'text-fg-secondary hover:bg-detail hover:text-fg',
   }
 
   const sizes = {
-    sm: 'text-sm px-4 py-2',
-    md: 'text-sm px-5 py-2.5',
-    lg: 'text-base px-7 py-3.5',
+    sm: 'px-3.5 py-2 text-sm',
+    md: 'px-5 py-2.5 text-sm',
+    lg: 'px-5 py-3 text-[15px]',
   }
 
   const classes = cn(base, variants[variant], sizes[size], className)
 
-  if (href) {
+  if (href && !isCommerceHref(href)) {
     return (
       <Link href={href} className={classes} aria-label={ariaLabel}>
         {children}
       </Link>
+    )
+  }
+
+  if (href && isCommerceHref(href)) {
+    return (
+      <button type="button" className={classes} aria-label={ariaLabel}>
+        {children}
+      </button>
     )
   }
 

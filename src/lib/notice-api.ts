@@ -1,15 +1,30 @@
+export interface PurchasePayload {
+  companyName: string
+  siret: string
+  email: string
+}
+
 export interface PurchaseResult {
   success: boolean
   keyPrefix?: string
+  companyName?: string
+  siret?: string
+}
+
+export interface VerifyResult {
+  ok: boolean
+  companyName?: string
+  keyPrefix?: string
+  error?: string
 }
 
 /**
  * Calls the Next.js API route (simulated payment → Resend).
  * The license key is emailed by the server — never returned to the browser.
- *
- * Later: Stripe Checkout + webhook (Firebase LicenseService) replaces this.
  */
-export async function purchaseLicense(email: string): Promise<PurchaseResult> {
+export async function purchaseLicense(
+  payload: PurchasePayload
+): Promise<PurchaseResult> {
   let res: Response
   try {
     res = await fetch('/api/purchase', {
@@ -18,7 +33,7 @@ export async function purchaseLicense(email: string): Promise<PurchaseResult> {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify(payload),
     })
   } catch {
     throw new Error(
@@ -26,7 +41,7 @@ export async function purchaseLicense(email: string): Promise<PurchaseResult> {
     )
   }
 
-  let json: { success?: boolean; keyPrefix?: string; error?: string } = {}
+  let json: PurchaseResult & { error?: string } = { success: false }
   try {
     json = await res.json()
   } catch {
@@ -40,5 +55,26 @@ export async function purchaseLicense(email: string): Promise<PurchaseResult> {
   return {
     success: Boolean(json.success ?? true),
     keyPrefix: json.keyPrefix,
+    companyName: json.companyName,
+    siret: json.siret,
   }
+}
+
+export async function verifyLicense(
+  licenseKey: string,
+  siret: string
+): Promise<VerifyResult> {
+  const res = await fetch('/api/license/verify', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ licenseKey, siret }),
+  })
+  const json = (await res.json().catch(() => ({}))) as VerifyResult
+  if (!res.ok) {
+    return { ok: false, error: json.error || 'Vérification impossible' }
+  }
+  return json
 }

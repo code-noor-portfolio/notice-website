@@ -2,40 +2,73 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        background: '#F8F9FB',
+        surface: '#FFFFFF',
+        detail: '#F4F6F8',
+        border: '#E8EBEF',
+        separator: '#DEE3E8',
+        primary: {
+          DEFAULT: '#356878',
+          hover: '#2B5664',
+        },
+        fg: {
+          DEFAULT: '#181B20',
+          strong: '#313843',
+          secondary: '#5D6675',
+          tertiary: '#8B94A3',
+        },
+        muted: '#9FAAB8',
+        night: {
+          primary: '#4F8A9A',
+          background: '#1A222C',
+          surface: '#202B38',
+          detail: '#1D2631',
+          border: '#313C49',
+          text: '#F4F6F8',
+          secondary: '#B6C0CB',
+        },
+        // Compat pages pas encore migrées
         navy: {
-          50: '#f0f4f8',
-          100: '#d6e4f0',
-          200: '#a8c5de',
-          500: '#2E86C1',
-          700: '#1E3A5F',
-          900: '#0F1F32',
-          950: '#080E18',
+          50: '#F4F6F8',
+          100: '#E8EBEF',
+          200: '#B6C0CB',
+          500: '#4F8A9A',
+          700: '#356878',
+          900: '#2B5664',
+          950: '#1A222C',
         },
         slate: {
-          text: '#1D2939',
-          secondary: '#667085',
-          tertiary: '#98A2B3',
-          border: '#E4E7EC',
+          text: '#181B20',
+          secondary: '#5D6675',
+          tertiary: '#8B94A3',
+          border: '#E8EBEF',
         },
-        success: '#027A48',
+        success: '#2F6F55',
       },
       fontFamily: {
         sans: ['var(--font-ibm-plex)', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       maxWidth: {
-        content: '1140px',
+        content: '72rem',
+      },
+      borderRadius: {
+        box: '0.75rem',
+      },
+      boxShadow: {
+        soft: '0 8px 24px -12px rgba(24, 27, 32, 0.12)',
+        frame: '0 16px 40px -20px rgba(24, 27, 32, 0.18)',
       },
       animation: {
-        'fade-up': 'fadeUp 0.5s ease-out forwards',
-        'fade-in': 'fadeIn 0.4s ease-out forwards',
+        'fade-up': 'fadeUp 0.45s ease-out forwards',
+        'fade-in': 'fadeIn 0.35s ease-out forwards',
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeIn: {

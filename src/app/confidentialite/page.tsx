@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Confidentialité — Notice',
+  title: 'Confidentialité',
 }
 
 export default function ConfidentialitePage() {
