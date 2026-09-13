@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     type: 'website',
   },
   metadataBase: new URL(SITE.url),
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+  },
 }
 
 export default function RootLayout({

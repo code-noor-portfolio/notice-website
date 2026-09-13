@@ -1,20 +1,28 @@
 import type { Metadata } from 'next'
-import { PlaceholderPage } from '@/components/ui/PlaceholderPage'
+import { Introduction } from '@/components/cgv/Introduction'
+import { ObjetLicence } from '@/components/cgv/ObjetLicence'
+import { EssaiGratuit } from '@/components/cgv/EssaiGratuit'
+import { CommandePaiement } from '@/components/cgv/CommandePaiement'
+import { LivraisonActivation } from '@/components/cgv/LivraisonActivation'
+import { DonneesSauvegardes } from '@/components/cgv/DonneesSauvegardes'
+import { Responsabilites } from '@/components/cgv/Responsabilites'
 
 export const metadata: Metadata = {
   title: 'CGV',
-  description: 'Conditions générales de vente de Notice.',
-  openGraph: {
-    title: 'CGV — Notice',
-    description: 'Conditions générales de vente de Notice.',
-  },
+  description:
+    'Conditions générales de vente de Notice, logiciel édité par CODE NOOR.',
 }
 
 export default function CgvPage() {
   return (
-    <PlaceholderPage
-      title="Conditions générales de vente"
-      description="Les conditions générales de vente seront publiées ici. En attendant, les informations essentielles restent disponibles sur la page Tarifs et par e-mail."
-    />
+    <>
+      <Introduction />
+      <ObjetLicence />
+      <EssaiGratuit />
+      <CommandePaiement />
+      <LivraisonActivation />
+      <DonneesSauvegardes />
+      <Responsabilites />
+    </>
   )
 }

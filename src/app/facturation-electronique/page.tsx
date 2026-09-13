@@ -1,5 +1,11 @@
 import type { Metadata } from 'next'
-import { PlaceholderPage } from '@/components/ui/PlaceholderPage'
+import { Introduction } from '@/components/facturation-electronique/Introduction'
+import { CeQueFaitNotice } from '@/components/facturation-electronique/CeQueFaitNotice'
+import { ComprendreFacturX } from '@/components/facturation-electronique/ComprendreFacturX'
+import { VotreChoix } from '@/components/facturation-electronique/VotreChoix'
+import { RoleDeNotice } from '@/components/facturation-electronique/RoleDeNotice'
+import { SePreparer } from '@/components/facturation-electronique/SePreparer'
+import { CtaFinal } from '@/components/facturation-electronique/CtaFinal'
 
 export const metadata: Metadata = {
   title: 'Facturation électronique',
@@ -14,9 +20,14 @@ export const metadata: Metadata = {
 
 export default function FacturationElectroniquePage() {
   return (
-    <PlaceholderPage
-      title="Facturation électronique"
-      description="Cette page expliquera précisément le rôle de Notice concernant Factur-X et la facturation électronique — sans présenter Notice comme une PDP."
-    />
+    <>
+      <Introduction />
+      <CeQueFaitNotice />
+      <ComprendreFacturX />
+      <VotreChoix />
+      <RoleDeNotice />
+      <SePreparer />
+      <CtaFinal />
+    </>
   )
 }

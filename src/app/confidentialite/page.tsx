@@ -1,30 +1,22 @@
 import type { Metadata } from 'next'
+import { Introduction } from '@/components/confidentialite/Introduction'
+import { DonneesCollectees } from '@/components/confidentialite/DonneesCollectees'
+import { Utilisation } from '@/components/confidentialite/Utilisation'
+import { ServicesTiers } from '@/components/confidentialite/ServicesTiers'
 
 export const metadata: Metadata = {
   title: 'Confidentialité',
+  description:
+    'Quelles données peuvent être collectées lorsque vous utilisez le site Notice, pourquoi elles peuvent être utilisées et quels sont vos droits.',
 }
 
 export default function ConfidentialitePage() {
   return (
-    <section className="section-padding pt-28 bg-white">
-      <div className="container-content max-w-2xl space-y-4 text-sm text-slate-secondary leading-relaxed">
-        <h1 className="text-3xl font-bold text-slate-text mb-6">
-          Politique de confidentialité
-        </h1>
-        <p>
-          Notice Desktop stocke vos données métier (clients, devis, factures)
-          uniquement sur votre ordinateur. Elles ne sont pas envoyées à nos
-          serveurs.
-        </p>
-        <p>
-          Lors de l’achat et de l’activation, nous traitons votre adresse email
-          et les métadonnées de licence (statut, appareils) via notre API Firebase
-          pour délivrer et vérifier votre licence.
-        </p>
-        <p>
-          Contact RGPD / support : support@notice.code-noor.com
-        </p>
-      </div>
-    </section>
+    <>
+      <Introduction />
+      <DonneesCollectees />
+      <Utilisation />
+      <ServicesTiers />
+    </>
   )
 }

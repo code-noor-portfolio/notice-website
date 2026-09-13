@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
-import { PlaceholderPage } from '@/components/ui/PlaceholderPage'
+import { Introduction } from '@/components/a-propos/Introduction'
+import { Origine } from '@/components/a-propos/Origine'
+import { Philosophie } from '@/components/a-propos/Philosophie'
+import { PourQui } from '@/components/a-propos/PourQui'
+import { CtaFinal } from '@/components/a-propos/CtaFinal'
 
 export const metadata: Metadata = {
   title: 'À propos',
@@ -13,9 +17,12 @@ export const metadata: Metadata = {
 
 export default function AProposPage() {
   return (
-    <PlaceholderPage
-      title="À propos de Notice"
-      description="Cette page racontera l’origine de Notice et l’approche de CODE NOOR : un logiciel simple, adapté au quotidien d’un artisan, sans abonnement obligatoire et sans dépendre du cloud."
-    />
+    <>
+      <Introduction />
+      <Origine />
+      <Philosophie />
+      <PourQui />
+      <CtaFinal />
+    </>
   )
 }

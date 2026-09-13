@@ -10,25 +10,20 @@ export function Logo({ className, inverted = false }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn('inline-flex items-center gap-2.5', className)}
+      className={cn('inline-flex items-center', className)}
       aria-label="Notice — accueil"
     >
-      <span
-        className={cn(
-          'flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold text-white',
-          inverted ? 'bg-primary' : 'bg-primary'
-        )}
-      >
-        N
-      </span>
-      <span
-        className={cn(
-          'text-[17px] font-semibold tracking-tight',
-          inverted ? 'text-white' : 'text-fg'
-        )}
-      >
-        Notice
-      </span>
+      <img
+        src={
+          inverted
+            ? '/logo/notice_full_logo_dark.svg'
+            : '/logo/notice_full_logo_light.svg'
+        }
+        alt=""
+        width={1045}
+        height={240}
+        className="h-7 w-auto md:h-8"
+      />
     </Link>
   )
 }

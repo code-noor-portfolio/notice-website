@@ -1,3 +1,4 @@
+import { CodeNoorLogo } from '@/components/ui/CodeNoorLogo'
 import { Logo } from '@/components/ui/Logo'
 import { PendingLink } from '@/components/ui/PendingLink'
 import { SITE } from '@/constants/site'
@@ -65,9 +66,11 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col justify-between gap-2 border-t border-night-border pt-6 text-xs text-night-secondary md:flex-row">
-          <p>
-            © {new Date().getFullYear()} {SITE.name} — {SITE.company}
+        <div className="mt-12 flex flex-col justify-between gap-3 border-t border-night-border pt-6 text-xs text-night-secondary md:flex-row md:items-center">
+          <p className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>© {new Date().getFullYear()} {SITE.name}</span>
+            <span aria-hidden>—</span>
+            <CodeNoorLogo inverted />
           </p>
           <p>notice.code-noor.com</p>
         </div>
