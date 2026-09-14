@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Notice',
   company: 'CODE NOOR',
   url: 'https://notice.code-noor.com',
-  email: 'support@notice.code-noor.com',
+  email: 'notice-code.noor@outlook.com',
   tagline:
     'Votre métier est déjà assez compliqué. Votre logiciel ne devrait pas l’être.',
   philosophy: 'Tout ce dont vous avez besoin. Rien de plus.',

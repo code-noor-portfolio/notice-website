@@ -2,12 +2,23 @@ import { Resend } from 'resend'
 import { escapeHtml } from '@/lib/html'
 import { formatSiretDisplay } from '@/lib/siret'
 
+/**
+ * Website-local Resend helpers.
+ *
+ * Commercial license delivery after Stripe payment is owned exclusively by
+ * Cloud Functions (P0.5A: webhook → issueLicenseFromCheckout → Resend).
+ * Do not add a public API route that sends license keys on demand.
+ *
+ * `sendLicenseEmail` remains for the gated simulated `/api/purchase` path only
+ * (COMMERCE_ENABLED=false → 403).
+ */
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://notice.code-noor.com'
 const FROM =
   process.env.RESEND_FROM || 'Notice <onboarding@resend.dev>'
 const SUPPORT =
-  process.env.SUPPORT_EMAIL || 'support@notice.code-noor.com'
+  process.env.SUPPORT_EMAIL || 'notice-code.noor@outlook.com'
 
 function getResend(): Resend {
   const key = process.env.RESEND_API_KEY

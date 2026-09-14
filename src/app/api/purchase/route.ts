@@ -3,12 +3,23 @@ import { generateLicenseKey, keyPrefix } from '@/lib/license'
 import { sendLicenseEmail } from '@/lib/email'
 import { isValidSiret, normalizeSiret } from '@/lib/siret'
 import { savePurchase } from '@/lib/purchase-store'
+import { COMMERCE_ENABLED } from '@/constants/site'
 
 /**
- * Simulated purchase (pre-Stripe).
- * Collects company + SIRET + email, binds the key to that SIRET, emails the artisan.
+ * Simulated purchase (pre-Stripe) — NOT the commercial issuance path.
+ * Commerce must stay closed until Stripe webhook → Firebase is live.
  */
 export async function POST(req: NextRequest) {
+  if (!COMMERCE_ENABLED) {
+    return NextResponse.json(
+      {
+        error:
+          'Commerce temporairement fermé. Aucune licence ne peut être émise depuis le site.',
+      },
+      { status: 403 }
+    )
+  }
+
   try {
     const body = await req.json()
     const email = String(body.email || '')

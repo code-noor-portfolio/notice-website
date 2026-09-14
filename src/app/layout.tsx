@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Sans } from 'next/font/google'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
+import { SiteChrome } from '@/components/layout/SiteChrome'
 import { SITE } from '@/constants/site'
 import '@/app/globals.css'
 
@@ -56,9 +55,7 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
-        <Header />
-        <main id="contenu">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   )

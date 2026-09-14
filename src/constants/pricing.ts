@@ -1,7 +1,7 @@
-/** Single source of truth for public pricing. Change once, update everywhere. */
+/** Single source of truth for public pricing (aligned with Commercial Spec V1). */
 export const PRICING = {
-  desktopPrice: 49,
-  updatesPrice: 19,
+  desktopPrice: 549,
+  updatesPrice: 99,
   currency: '€',
   maxDevices: 2,
   updatesIncludedMonths: 12,

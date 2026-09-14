@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { PRICING, formatPrice } from '@/constants/pricing'
+import { SITE } from '@/constants/site'
 
 export const metadata: Metadata = {
   title: 'CGU',
@@ -23,8 +24,7 @@ export default function CguPage() {
           de {formatPrice(PRICING.updatesPrice)} / an.
         </p>
         <p>
-          Satisfait ou remboursé 30 jours — contactez
-          support@notice.code-noor.com.
+          Satisfait ou remboursé 30 jours — contactez {SITE.email}.
         </p>
         <p className="text-slate-tertiary text-xs pt-8">
           Version provisoire — CGU juridiques complètes à finaliser avant vente
