@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Monitor, Apple, Check } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
@@ -14,6 +15,9 @@ const steps = [
   'Commencez à créer vos devis',
 ]
 
+const downloadCardClass =
+  'flex cursor-pointer items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150'
+
 export default function TelechargerPage() {
   return (
     <section className="section-padding pt-28 bg-white">
@@ -26,8 +30,9 @@ export default function TelechargerPage() {
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-16">
-          <div
-            className="flex cursor-pointer items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
+          <Link
+            href="/bientot-disponible"
+            className={downloadCardClass}
             aria-label="Télécharger Notice pour Windows"
           >
             <div className="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center">
@@ -37,9 +42,10 @@ export default function TelechargerPage() {
               <p className="font-semibold text-slate-text">Windows</p>
               <p className="text-xs text-slate-secondary">.exe · Windows 10 / 11</p>
             </div>
-          </div>
-          <div
-            className="flex cursor-pointer items-center gap-4 p-6 rounded-2xl border border-slate-border hover:border-navy-500 transition-all duration-150"
+          </Link>
+          <Link
+            href="/bientot-disponible"
+            className={downloadCardClass}
             aria-label="Télécharger Notice pour macOS"
           >
             <div className="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center">
@@ -49,7 +55,7 @@ export default function TelechargerPage() {
               <p className="font-semibold text-slate-text">macOS</p>
               <p className="text-xs text-slate-secondary">.dmg · macOS 12+</p>
             </div>
-          </div>
+          </Link>
         </div>
 
         <h2 className="text-xl font-bold text-slate-text mb-4">Installation</h2>
@@ -99,7 +105,7 @@ export default function TelechargerPage() {
           <p className="text-sm text-slate-secondary mb-4">
             Pas encore de licence ?
           </p>
-          <Button href="/acheter">Acheter Notice</Button>
+          <Button href="/bientot-disponible">Acheter Notice</Button>
         </div>
       </div>
     </section>

@@ -3,7 +3,10 @@ import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 
 /** Prêt à devenir un vrai lien d’achat quand COMMERCE_ENABLED passera à true. */
-const ACHETER = { label: 'Acheter Notice', href: '/acheter' } as const
+const ACHETER = {
+  label: 'Acheter Notice',
+  href: '/bientot-disponible',
+} as const
 
 export function Offre() {
   return (

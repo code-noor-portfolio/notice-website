@@ -3,7 +3,10 @@ import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { CTA } from '@/constants/site'
 
-const ACHETER = { label: 'Acheter Notice', href: '/acheter' } as const
+const ACHETER = {
+  label: 'Acheter Notice',
+  href: '/bientot-disponible',
+} as const
 
 export function CtaFinal() {
   return (

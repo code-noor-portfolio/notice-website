@@ -16,15 +16,19 @@ export const NAV_LINKS = [
   { label: 'FAQ', href: '/faq' },
 ] as const
 
+/** Destination temporaire des CTA Acheter / Télécharger / Essayer. */
+export const CTA_COMING_SOON_HREF = '/bientot-disponible' as const
+
 export const CTA = {
-  essayer: { label: 'Essayer Notice', href: '/telecharger' },
-  telecharger: { label: 'Télécharger', href: '/telecharger' },
+  essayer: { label: 'Essayer Notice', href: CTA_COMING_SOON_HREF },
+  telecharger: { label: 'Télécharger', href: CTA_COMING_SOON_HREF },
   decouvrir: { label: 'Découvrir Notice', href: '/fonctionnalites' },
 } as const
 
-/** Vitrine : achat, essai et téléchargement n’ont pas encore de parcours réel.
- *  Quand ce flag passera à true, retirer aussi les redirects /acheter et /telecharger
- *  dans next.config.mjs. */
+/** Vitrine : parcours achat/téléchargement réels encore fermés.
+ *  Les CTA publics pointent vers /bientot-disponible.
+ *  Quand le commerce ouvrira, retirer aussi les redirects /acheter et /telecharger
+ *  dans next.config.mjs et reconnecter ces href. */
 export const COMMERCE_ENABLED = false
 
 export function isCommerceHref(href?: string): boolean {

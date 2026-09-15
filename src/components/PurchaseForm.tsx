@@ -1,21 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { purchaseLicense } from '@/lib/notice-api'
+import { createLicenseCheckout } from '@/lib/notice-api'
 import { PRICING, formatPrice } from '@/constants/pricing'
-import { STRIPE_ENABLED, createCheckoutSession } from '@/lib/stripe'
 import { isValidSiret, normalizeSiret } from '@/lib/siret'
 
 /**
  * Purchase form — company + SIRET + email.
- * Today: POST /api/purchase → key bound to SIRET → Resend.
- * Later: Stripe Checkout → webhook → LicenseService.issue.
+ * Starts Stripe Checkout via Firebase POST /v1/purchase/checkout.
+ * License issuance remains webhook-only (never in the browser).
  */
 export function PurchaseForm() {
-  const router = useRouter()
   const [companyName, setCompanyName] = useState('')
   const [siret, setSiret] = useState('')
   const [email, setEmail] = useState('')
@@ -32,15 +29,24 @@ export function PurchaseForm() {
       setError('Veuillez saisir le nom de votre entreprise.')
       return
     }
+    if (company.length > 200) {
+      setError('Veuillez saisir le nom de votre entreprise.')
+      return
+    }
     if (!isValidSiret(siret)) {
       setError('SIRET invalide. Il doit comporter 14 chiffres (contrôle Luhn).')
       return
     }
-    if (!email || !email.includes('@')) {
+    const normalizedEmail = email.trim()
+    if (
+      !normalizedEmail ||
+      !normalizedEmail.includes('@') ||
+      normalizedEmail.length > 254
+    ) {
       setError('Veuillez saisir un email valide.')
       return
     }
-    if (email !== emailConfirm) {
+    if (normalizedEmail !== emailConfirm.trim()) {
       setError('Les deux adresses email ne correspondent pas.')
       return
     }
@@ -48,30 +54,12 @@ export function PurchaseForm() {
     setLoading(true)
     try {
       const normalizedSiret = normalizeSiret(siret)
-
-      if (STRIPE_ENABLED) {
-        const origin =
-          typeof window !== 'undefined' ? window.location.origin : ''
-        const session = await createCheckoutSession({
-          email,
-          successUrl: `${origin}/acheter/succes?email=${encodeURIComponent(email)}`,
-          cancelUrl: `${origin}/acheter`,
-        })
-        window.location.href = session.url
-        return
-      }
-
-      await purchaseLicense({
+      const { checkoutUrl } = await createLicenseCheckout({
         companyName: company,
         siret: normalizedSiret,
-        email,
+        email: normalizedEmail,
       })
-      const q = new URLSearchParams({
-        email,
-        company: company,
-        siret: normalizedSiret,
-      })
-      router.push(`/acheter/succes?${q.toString()}`)
+      window.location.href = checkoutUrl
     } catch (err) {
       setError(
         err instanceof Error
@@ -187,9 +175,7 @@ export function PurchaseForm() {
       </Button>
 
       <p className="text-xs text-slate-tertiary text-center">
-        {STRIPE_ENABLED
-          ? 'Paiement sécurisé via Stripe'
-          : 'Paiement simulé · Clé envoyée par email, liée à votre SIRET'}
+        Paiement sécurisé via Stripe
       </p>
     </form>
   )

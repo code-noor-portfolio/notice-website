@@ -66,7 +66,7 @@ export function Pricing() {
             </ul>
 
             <Button
-              href="/acheter"
+              href="/bientot-disponible"
               size="lg"
               className="w-full bg-white text-navy-700 hover:bg-slate-50 font-semibold"
             >
