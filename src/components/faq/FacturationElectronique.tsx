@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
@@ -126,15 +125,6 @@ export function FacturationElectronique() {
               )
             })}
           </div>
-
-          <p className="mt-6 text-center">
-            <Link
-              href="/facturation-electronique"
-              className="text-sm text-fg-secondary transition-colors duration-150 hover:text-primary"
-            >
-              En savoir plus sur la facturation électronique →
-            </Link>
-          </p>
         </div>
       </Container>
     </Section>

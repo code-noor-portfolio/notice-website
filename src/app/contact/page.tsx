@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Introduction } from '@/components/contact/Introduction'
 import { Formulaire } from '@/components/contact/Formulaire'
-import { BesoinAide } from '@/components/contact/BesoinAide'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -14,7 +13,6 @@ export default function ContactPage() {
     <>
       <Introduction />
       <Formulaire />
-      <BesoinAide />
     </>
   )
 }

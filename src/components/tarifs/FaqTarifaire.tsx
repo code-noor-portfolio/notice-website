@@ -33,7 +33,8 @@ const QUESTIONS = [
   {
     id: 'faq-appareils',
     question: 'Puis-je utiliser Notice sur plusieurs appareils ?',
-    answer: 'Votre licence permet d’utiliser Notice sur 2 appareils.',
+    answer:
+      'Votre licence permet d’utiliser Notice sur 2 appareils. La synchronisation entre les deux appareils se fait manuellement, par exportation et importation des données via la sauvegarde et la restauration dans les paramètres.',
   },
 ] as const
 

@@ -9,7 +9,6 @@ const columns = [
     links: [
       { label: 'Fonctionnalités', href: '/fonctionnalites' },
       { label: 'Tarifs', href: '/tarifs' },
-      { label: 'Facturation électronique', href: '/facturation-electronique' },
       { label: 'Télécharger', href: '/bientot-disponible' },
     ],
   },

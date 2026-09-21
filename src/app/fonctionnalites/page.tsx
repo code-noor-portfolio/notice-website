@@ -15,9 +15,6 @@ import { CtaFinal } from '@/components/fonctionnalites/CtaFinal'
 const hasDashboardScreenshot = existsSync(
   path.join(process.cwd(), 'public/screens/dashboard.webp')
 )
-const hasBackupScreenshot = existsSync(
-  path.join(process.cwd(), 'public/screens/sauvegardes.webp')
-)
 
 export const metadata: Metadata = {
   title: 'Fonctionnalités',
@@ -40,7 +37,7 @@ export default function FonctionnalitesPage() {
       <Paiements />
       <Maintenance />
       <TableauDeBord showScreenshot={hasDashboardScreenshot} />
-      <Sauvegardes showScreenshot={hasBackupScreenshot} />
+      <Sauvegardes />
       <Exports />
       <CtaFinal />
     </>

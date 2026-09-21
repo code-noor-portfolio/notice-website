@@ -1,7 +1,6 @@
 'use client'
 
 import { Button } from '@/components/ui/Button'
-import { PendingLink } from '@/components/ui/PendingLink'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { CTA } from '@/constants/site'
@@ -59,16 +58,10 @@ export function TryNotice() {
           disponibles sur votre ordinateur.
         </p>
 
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <Button href={CTA.telecharger.href} size="lg" className="w-full sm:w-auto">
+        <div className="mt-8 flex flex-col items-center">
+          <Button href={CTA.essayer.href} size="lg" className="w-full sm:w-auto">
             Essayer Notice gratuitement
           </Button>
-          <PendingLink
-            href={CTA.telecharger.href}
-            className="text-sm text-fg-secondary transition-colors duration-150 hover:text-primary"
-          >
-            Découvrir la démo →
-          </PendingLink>
         </div>
       </Container>
     </Section>

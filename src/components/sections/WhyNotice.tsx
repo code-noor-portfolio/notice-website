@@ -24,7 +24,7 @@ const POINTS: { title: string; text: string; icon: LucideIcon }[] = [
   },
   {
     title: 'Windows ou macOS. À vous de choisir.',
-    text: 'Notice fonctionne sur Windows et macOS, avec une licence permettant d’utiliser le logiciel sur deux appareils.',
+    text: 'Notice fonctionne sur Windows et macOS, avec une licence permettant d’utiliser le logiciel sur deux appareils. Synchronisation manuelle.',
     icon: Monitor,
   },
 ]

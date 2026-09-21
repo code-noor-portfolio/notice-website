@@ -13,7 +13,7 @@ const GARANTIES = [
 
 export function EssaiGratuit() {
   return (
-    <Section id="essai-gratuit" className="scroll-mt-24 bg-detail">
+    <Section id="essai-gratuit" className="scroll-mt-24 bg-background">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary">

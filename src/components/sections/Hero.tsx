@@ -59,8 +59,8 @@ export function Hero() {
             transition={{ duration: 0.45, delay: 0.08, ease: 'easeOut' }}
           >
             <ScreenshotFrame
-              src="/screens/hero.webp"
-              alt="Fenêtre principale de Notice, le logiciel de gestion pour artisans"
+              src="/screens/notice_dahsboard_screenshot.png"
+              alt="Tableau de bord Notice, le logiciel de gestion pour artisans"
             />
           </motion.div>
         </div>

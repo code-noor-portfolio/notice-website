@@ -2,13 +2,20 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { CTA, NAV_LINKS } from '@/constants/site'
 import { cn } from '@/lib/utils'
 
+function isActivePath(pathname: string, href: string) {
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Header() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -47,20 +54,29 @@ export function Header() {
         <Logo />
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[14px] text-fg-secondary transition-colors duration-150 hover:text-fg"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = isActivePath(pathname, link.href)
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  'text-[16px] transition-colors duration-150',
+                  active
+                    ? 'font-semibold text-primary'
+                    : 'text-fg-secondary hover:text-fg'
+                )}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button href={CTA.telecharger.href} variant="ghost" size="sm">
-            {CTA.telecharger.label}
+          <Button href={CTA.acheter.href} variant="ghost" size="sm">
+            {CTA.acheter.label}
           </Button>
           <Button href={CTA.essayer.href} size="sm">
             {CTA.essayer.label}
@@ -93,22 +109,31 @@ export function Header() {
           className="container-content flex flex-col gap-1 py-4"
           aria-label="Navigation mobile"
         >
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-2 py-3 text-[15px] text-fg-strong"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = isActivePath(pathname, link.href)
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  'rounded-lg px-2 py-3 text-[16px]',
+                  active
+                    ? 'font-semibold text-primary'
+                    : 'text-fg-strong'
+                )}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
           <div className="mt-3 flex flex-col gap-2 border-t border-separator pt-4">
             <Button href={CTA.essayer.href} className="w-full">
               {CTA.essayer.label}
             </Button>
-            <Button href={CTA.telecharger.href} variant="secondary" className="w-full">
-              {CTA.telecharger.label}
+            <Button href={CTA.acheter.href} variant="secondary" className="w-full">
+              {CTA.acheter.label}
             </Button>
           </div>
         </nav>

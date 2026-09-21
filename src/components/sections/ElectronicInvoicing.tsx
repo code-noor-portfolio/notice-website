@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
@@ -17,7 +16,7 @@ const STEPS = [
   },
   {
     title: 'Choisissez votre solution',
-    text: 'Utilisez ensuite la solution de transmission qui correspond à votre activité.',
+    text: 'Utilisez ensuite la solution de transmission (PDP) qui correspond à votre activité.',
   },
 ]
 
@@ -27,7 +26,7 @@ export function ElectronicInvoicing() {
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <ScreenshotFrame
-            src="/screens/facture.webp"
+            src="/screens/notice_facturation_screenshot.png"
             alt="Facture Notice, prête à être exportée au format Factur-X"
           />
 
@@ -45,7 +44,8 @@ export function ElectronicInvoicing() {
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
               Notice vous permet de générer vos factures au format Factur-X et
-              de les utiliser avec la solution de transmission de votre choix.
+              de les utiliser avec la solution de transmission (PDP) de votre
+              choix.
             </p>
 
             <ol className="mt-8 space-y-5">
@@ -74,16 +74,7 @@ export function ElectronicInvoicing() {
               </span>{' '}
               Notice se concentre sur la gestion de votre activité et la
               préparation de vos factures. Vous restez libre de choisir votre
-              solution de transmission.
-            </p>
-
-            <p className="mt-5">
-              <Link
-                href="/facturation-electronique"
-                className="text-sm text-fg-secondary transition-colors duration-150 hover:text-primary"
-              >
-                Comprendre la facturation électronique avec Notice →
-              </Link>
+              solution de transmission (PDP).
             </p>
           </motion.div>
         </div>

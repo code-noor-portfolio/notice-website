@@ -1,12 +1,7 @@
-import { FileText, HardHat, Image, ListChecks, UserRound } from 'lucide-react'
+import { BrickWall, FileText, Image, ListChecks, UserRound } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
-
-const ATTACHES = [
-  { label: 'Documents', icon: FileText },
-  { label: 'Photos', icon: Image },
-  { label: 'Avancement', icon: ListChecks },
-] as const
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 
 export function ClientsChantiers() {
   return (
@@ -50,7 +45,7 @@ export function ClientsChantiers() {
 
               <div>
                 <h3 className="flex items-center gap-2.5 text-[17px] font-semibold text-fg">
-                  <HardHat
+                  <BrickWall
                     size={18}
                     strokeWidth={1.75}
                     className="text-primary"
@@ -63,61 +58,30 @@ export function ClientsChantiers() {
                   endroit les informations et documents qui permettent de
                   suivre son avancement.
                 </p>
+                <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-fg-secondary">
+                  <li className="flex items-center gap-1.5">
+                    <FileText size={14} className="text-primary" aria-hidden />
+                    Documents
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <Image size={14} className="text-primary" aria-hidden />
+                    Photos
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <ListChecks size={14} className="text-primary" aria-hidden />
+                    Avancement
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
-          <ClientChantierRelation />
+          <ScreenshotFrame
+            src="/screens/notice_client_page_screenshot.png"
+            alt="Fiche client Notice avec chantiers et documents associés"
+          />
         </div>
       </Container>
     </Section>
-  )
-}
-
-function ClientChantierRelation() {
-  return (
-    <figure className="mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto">
-      <div className="rounded-xl border border-border bg-surface px-6 py-7">
-        <div className="text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-primary">
-            Client
-          </p>
-          <p className="mt-2 text-[15px] font-medium text-fg">Jean Dupont</p>
-        </div>
-
-        <p className="my-3 text-center text-fg-tertiary" aria-hidden>
-          ↓
-        </p>
-
-        <div className="text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-primary">
-            Chantier
-          </p>
-          <p className="mt-2 text-[15px] font-medium text-fg">
-            Rénovation de salle de bain
-          </p>
-        </div>
-
-        <ul className="mt-5 space-y-2.5 border-t border-border pt-4">
-          {ATTACHES.map((item) => (
-            <li
-              key={item.label}
-              className="flex items-center gap-2.5 text-[15px] text-fg-secondary"
-            >
-              <item.icon
-                size={16}
-                strokeWidth={1.75}
-                className="text-primary"
-                aria-hidden
-              />
-              {item.label}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <figcaption className="mt-3 text-center text-sm text-fg-tertiary lg:text-left">
-        Le chantier reste rattaché au client.
-      </figcaption>
-    </figure>
   )
 }

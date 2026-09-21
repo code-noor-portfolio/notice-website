@@ -22,7 +22,7 @@ const IDEES: { title: string; text: string; icon: LucideIcon }[] = [
 
 export function LeChoix() {
   return (
-    <Section id="le-choix" className="scroll-mt-24 bg-background">
+    <Section id="le-choix" className="scroll-mt-24 bg-detail">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary">

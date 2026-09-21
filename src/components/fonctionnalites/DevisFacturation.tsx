@@ -1,9 +1,17 @@
-import { Check, FileText, Mail, Receipt } from 'lucide-react'
+import { FileText, Mail, Receipt } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 import { cn } from '@/lib/utils'
 
-const FIL = ['Client', 'Chantier', 'Devis', 'Facture'] as const
+const MAIN_FLOW = [
+  'Client',
+  'Chantier',
+  'Devis',
+  'Acompte',
+  'Facture',
+  'Avoir',
+] as const
 
 export function DevisFacturation() {
   return (
@@ -24,7 +32,13 @@ export function DevisFacturation() {
             </p>
           </div>
 
-          <DocumentsFil />
+          <div className="space-y-6 lg:row-span-2 lg:row-start-1 lg:col-start-2">
+            <ScreenshotFrame
+              src="/screens/notice_documents_screenshot.png"
+              alt="Documents Notice : devis, acomptes, factures et avoirs"
+            />
+            <DocumentsFil />
+          </div>
 
           <div className="space-y-8 lg:col-start-1">
             <div>
@@ -102,30 +116,20 @@ export function DevisFacturation() {
 
 function DocumentsFil() {
   return (
-    <figure className="mx-auto w-full max-w-sm lg:row-span-2 lg:row-start-1 lg:col-start-2 lg:mx-0 lg:ml-auto">
-      <div className="rounded-xl border border-border bg-surface px-6 py-8">
+    <figure>
+      <div className="rounded-xl border border-border bg-surface px-4 py-6 sm:px-6">
         <ol className="flex flex-col items-center">
-          {FIL.map((step, index) => {
-            const highlighted = step === 'Devis' || step === 'Facture'
-            const afterDevis = step === 'Facture'
+          {MAIN_FLOW.map((step, index) => {
+            const highlighted =
+              step === 'Devis' ||
+              step === 'Acompte' ||
+              step === 'Facture' ||
+              step === 'Avoir'
 
             return (
-              <li key={step} className="flex flex-col items-center">
-                {afterDevis ? (
-                  <>
-                    <span className="my-2.5 text-fg-tertiary" aria-hidden>
-                      ↓
-                    </span>
-                    <span
-                      className="flex h-7 w-7 items-center justify-center rounded-full bg-detail text-primary"
-                      aria-hidden
-                    >
-                      <Check size={14} strokeWidth={2.25} />
-                    </span>
-                  </>
-                ) : null}
+              <li key={step} className="flex w-full flex-col items-center">
                 {index > 0 ? (
-                  <span className="my-2.5 text-fg-tertiary" aria-hidden>
+                  <span className="my-2 text-fg-tertiary" aria-hidden>
                     ↓
                   </span>
                 ) : null}
@@ -143,10 +147,28 @@ function DocumentsFil() {
             )
           })}
         </ol>
+
+        <div className="mt-6 space-y-2 border-t border-border pt-5">
+          <p className="text-center text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
+            Chemins directs
+          </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-4">
+            <Shortcut label="Chantier → Facture" />
+            <Shortcut label="Devis → Facture" />
+          </div>
+        </div>
       </div>
-      <figcaption className="mt-3 text-center text-sm text-fg-tertiary lg:text-left">
-        Vos documents suivent le chantier.
+      <figcaption className="mt-3 text-center text-sm text-fg-tertiary">
+        Le fil principal, avec des accès directs vers la facture.
       </figcaption>
     </figure>
+  )
+}
+
+function Shortcut({ label }: { label: string }) {
+  return (
+    <p className="rounded-lg border border-dashed border-border bg-detail px-3 py-2 text-center text-xs font-medium text-fg-secondary">
+      {label}
+    </p>
   )
 }

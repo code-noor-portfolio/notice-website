@@ -9,11 +9,12 @@ export const SITE = {
 } as const
 
 export const NAV_LINKS = [
+  { label: 'Accueil', href: '/' },
   { label: 'Fonctionnalités', href: '/fonctionnalites' },
   { label: 'Tarifs', href: '/tarifs' },
-  { label: 'Facturation électronique', href: '/facturation-electronique' },
-  { label: 'À propos', href: '/a-propos' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Documentation', href: '/documentation' },
+  { label: 'À propos', href: '/a-propos' },
 ] as const
 
 /** Destination temporaire des CTA Acheter / Télécharger / Essayer. */
@@ -22,6 +23,7 @@ export const CTA_COMING_SOON_HREF = '/bientot-disponible' as const
 export const CTA = {
   essayer: { label: 'Essayer Notice', href: CTA_COMING_SOON_HREF },
   telecharger: { label: 'Télécharger', href: CTA_COMING_SOON_HREF },
+  acheter: { label: 'Acheter', href: CTA_COMING_SOON_HREF },
   decouvrir: { label: 'Découvrir Notice', href: '/fonctionnalites' },
 } as const
 

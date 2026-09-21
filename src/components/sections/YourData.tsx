@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FolderClosed, History, Monitor, type LucideIcon } from 'lucide-react'
+import { ArrowDown, ArrowRight, FolderClosed, History, Monitor, type LucideIcon } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 
 const POINTS: { title: string; text: string; extra?: string; icon: LucideIcon }[] = [
   {
@@ -45,7 +46,13 @@ export function YourData() {
             </p>
           </div>
 
-          <DataFlowVisual />
+          <div className="lg:row-span-2 lg:row-start-1 lg:col-start-2">
+            <ScreenshotFrame
+              src="/screens/notice_restoration_screenshot.png"
+              alt="Restauration d’une sauvegarde dans Notice"
+            />
+            <DataFlowVisual />
+          </div>
 
           <motion.div
             className="lg:col-start-1"
@@ -101,24 +108,93 @@ export function YourData() {
 function DataFlowVisual() {
   return (
     <div
-      className="flex flex-col items-center justify-center lg:row-span-2 lg:row-start-1 lg:col-start-2"
-      aria-hidden
+      className="mt-6 rounded-xl border border-border bg-surface px-4 py-5 sm:px-6"
+      aria-label="Parcours des données : Notice, sauvegarde, puis restauration"
     >
-      <div className="w-full max-w-sm rounded-xl border border-border bg-surface px-6 py-7 text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.14em] text-primary">
-          Notice
-        </p>
-        <p className="mt-4 text-[15px] font-medium text-fg">Vos données</p>
-        <span className="mt-3 block text-fg-tertiary">↓</span>
-        <p className="mt-3 text-[15px] text-fg-secondary">Votre ordinateur</p>
+      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
+        <FlowNode
+          eyebrow="Notice"
+          title="Vos données"
+          detail="Dans le logiciel"
+        />
+        <FlowArrow className="hidden sm:flex" />
+        <ArrowDown
+          size={16}
+          className="mx-auto text-fg-tertiary sm:hidden"
+          aria-hidden
+        />
+        <FlowNode
+          eyebrow="Votre ordinateur"
+          title="Sauvegarde"
+          detail="Dossier que vous choisissez"
+        />
       </div>
 
-      <span className="my-2 text-fg-tertiary">↓</span>
+      <div className="my-4 flex items-center justify-center gap-2">
+        <div className="h-px flex-1 bg-border" />
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
+          Restauration
+        </p>
+        <div className="h-px flex-1 bg-border" />
+      </div>
 
-      <div className="w-full max-w-sm rounded-xl border border-border bg-surface px-6 py-6 text-center">
-        <p className="text-[15px] font-medium text-fg">Sauvegarde</p>
-        <p className="mt-1 text-sm text-fg-secondary">dossier choisi</p>
+      <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-3">
+        <p className="text-center text-sm text-fg-secondary sm:max-w-[12rem] sm:text-right">
+          Depuis votre sauvegarde
+        </p>
+        <ArrowRight
+          size={16}
+          className="hidden shrink-0 text-primary sm:block"
+          aria-hidden
+        />
+        <ArrowDown
+          size={16}
+          className="text-primary sm:hidden"
+          aria-hidden
+        />
+        <FlowNode
+          eyebrow="Notice"
+          title="Données restaurées"
+          detail="De retour dans votre logiciel"
+          accent
+        />
       </div>
     </div>
+  )
+}
+
+function FlowNode({
+  eyebrow,
+  title,
+  detail,
+  accent = false,
+}: {
+  eyebrow: string
+  title: string
+  detail: string
+  accent?: boolean
+}) {
+  return (
+    <div
+      className={
+        accent
+          ? 'w-full max-w-[14rem] rounded-lg border border-primary/30 bg-detail px-4 py-3 text-center'
+          : 'w-full max-w-[14rem] rounded-lg border border-border bg-detail px-4 py-3 text-center'
+      }
+    >
+      <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-primary">
+        {eyebrow}
+      </p>
+      <p className="mt-1.5 text-[15px] font-medium text-fg">{title}</p>
+      <p className="mt-0.5 text-xs text-fg-tertiary">{detail}</p>
+    </div>
+  )
+}
+
+function FlowArrow({ className }: { className?: string }) {
+  return (
+    <span className={className} aria-hidden>
+      <ArrowRight size={16} className="shrink-0 text-fg-tertiary" />
+    </span>
   )
 }

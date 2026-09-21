@@ -2,8 +2,10 @@
 
 import Link from 'next/link'
 import { Check } from 'lucide-react'
+import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { CTA } from '@/constants/site'
 
 const INCLUDED = [
   'Toutes les fonctionnalités',
@@ -33,15 +35,19 @@ export function LicenseOffer() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-md rounded-xl border border-border bg-surface px-6 py-8 sm:px-8">
+        <div className="mx-auto mt-10 max-w-lg border-y border-border bg-surface px-6 py-10 text-center sm:px-10">
           <p className="text-[2.25rem] font-semibold leading-none tracking-tight text-fg">
-            549&nbsp;€ <span className="text-lg font-medium text-fg-secondary">HT</span>
+            549&nbsp;€{' '}
+            <span className="text-lg font-medium text-fg-secondary">HT</span>
           </p>
           <p className="mt-2 text-[15px] text-fg-secondary">Licence perpétuelle</p>
 
-          <ul className="mt-6 space-y-2.5">
+          <ul className="mx-auto mt-8 inline-flex flex-col items-start gap-2.5 text-left">
             {INCLUDED.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-[15px] text-fg-strong">
+              <li
+                key={item}
+                className="flex items-start gap-2.5 text-[15px] text-fg-strong"
+              >
                 <Check
                   size={16}
                   strokeWidth={2}
@@ -53,7 +59,7 @@ export function LicenseOffer() {
             ))}
           </ul>
 
-          <div className="mt-6 border-t border-border pt-5">
+          <div className="mx-auto mt-8 max-w-sm border-t border-border pt-6">
             <p className="text-[15px] leading-relaxed text-fg-secondary">
               Après la première année : 99&nbsp;€ HT/an, uniquement si vous
               souhaitez continuer à recevoir les nouvelles versions et mises à
@@ -66,6 +72,12 @@ export function LicenseOffer() {
               Pas de renouvellement obligatoire pour continuer à utiliser
               Notice.
             </p>
+          </div>
+
+          <div className="mt-8">
+            <Button href={CTA.acheter.href} size="lg" className="w-full sm:w-auto">
+              {CTA.acheter.label}
+            </Button>
           </div>
         </div>
 

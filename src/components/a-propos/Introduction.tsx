@@ -1,5 +1,4 @@
 import { Container } from '@/components/ui/Container'
-import { SITE } from '@/constants/site'
 
 export function Introduction() {
   return (
@@ -13,17 +12,17 @@ export function Introduction() {
             Notice est né d’une idée simple.
           </h1>
           <p className="mt-6 text-[15px] leading-relaxed text-fg-secondary">
-            Un logiciel de gestion ne devrait pas ajouter de complexité à une
-            activité qui en demande déjà beaucoup.
+            Un logiciel de gestion doit vous aider dans votre activité, pas la
+            compliquer davantage.
           </p>
           <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
             Notice a été pensé pour les artisans indépendants qui veulent
-            simplement gérer leurs clients, leurs chantiers, leurs rendez-vous
-            et leur facturation, sans devoir apprendre un logiciel
-            disproportionné par rapport à leurs besoins.
+            gérer simplement leurs clients, leurs chantiers, leurs rendez-vous
+            et leur facturation, avec un outil adapté à leur façon de
+            travailler.
           </p>
           <p className="mt-10 text-lg font-medium leading-snug text-fg">
-            {SITE.philosophy}
+            Tout ce dont vous avez besoin. Rien de plus.
           </p>
         </div>
       </Container>

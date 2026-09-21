@@ -7,7 +7,7 @@ export function CtaFinal() {
   return (
     <Section
       id="cta-final"
-      className="scroll-mt-24 bg-primary py-20 md:py-28 dark:bg-night-surface"
+      className="scroll-mt-24 bg-primary py-12 md:py-16 dark:bg-night-surface"
     >
       <Container>
         <div className="mx-auto max-w-xl text-center">

@@ -19,8 +19,6 @@ const sections = [
     title: 'Facturation électronique',
     items: [
       'Générer un Factur-X',
-      'Choisir votre plateforme de dépôt',
-      'UBL 2.1 et CII',
     ],
   },
   {

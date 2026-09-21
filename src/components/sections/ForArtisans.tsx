@@ -10,7 +10,7 @@ const SITUATIONS = [
     text: 'Retrouvez au même endroit les informations liées à vos clients, vos chantiers, vos rendez-vous et vos documents.',
   },
   {
-    title: 'Vous voulez passer moins de temps dans votre administratif.',
+    title: 'Votre administratif prend moins de place.',
     text: 'Devis, factures, paiements et rappels sont regroupés dans le même outil.',
   },
   {

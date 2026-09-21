@@ -1,6 +1,7 @@
 import { Bell, UserRound, Wrench } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 import { cn } from '@/lib/utils'
 
 const FIL = [
@@ -34,7 +35,13 @@ export function Maintenance() {
             </p>
           </div>
 
-          <MaintenanceFil />
+          <div className="space-y-6 lg:row-span-2 lg:row-start-1 lg:col-start-2">
+            <MaintenanceFil />
+            <ScreenshotFrame
+              src="/screens/notice_reminders_screenshot.png"
+              alt="Rappels de maintenance dans Notice"
+            />
+          </div>
 
           <div className="space-y-8 lg:col-start-1">
             <div>
@@ -98,7 +105,7 @@ export function Maintenance() {
 
 function MaintenanceFil() {
   return (
-    <figure className="mx-auto w-full max-w-sm lg:row-span-2 lg:row-start-1 lg:col-start-2 lg:mx-0 lg:ml-auto">
+    <figure>
       <div className="rounded-xl border border-border bg-surface px-6 py-8">
         <ol className="flex flex-col items-center">
           {FIL.map((step, index) => {

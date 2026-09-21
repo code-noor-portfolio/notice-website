@@ -24,6 +24,14 @@ const PROBLEM_TYPES = new Set<string>([
   'Je souhaite signaler un problème',
 ])
 
+const PRECISIONS = [
+  'ce que vous faisiez lorsque le problème est apparu ;',
+  'ce que vous attendiez ;',
+  'ce qui s’est réellement produit ;',
+  'votre version de Notice ;',
+  'votre système (Windows ou macOS).',
+] as const
+
 const FIELD =
   'w-full rounded-lg border bg-surface px-4 py-2.5 text-[15px] text-fg placeholder:text-fg-tertiary transition-colors duration-150 focus:border-primary'
 
@@ -123,11 +131,8 @@ export function Formulaire() {
   return (
     <Section id="formulaire" className="scroll-mt-24 bg-detail">
       <Container>
-        <form
-          onSubmit={onSubmit}
-          noValidate
-          className="mx-auto max-w-2xl"
-        >
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
+          <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="type" className="block text-[15px] font-medium text-fg">
               Comment pouvons-nous vous aider ?
@@ -291,7 +296,48 @@ export function Formulaire() {
               Préparer mon message
             </Button>
           </div>
-        </form>
+          </form>
+
+          <aside className="lg:sticky lg:top-28">
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary">
+              Support
+            </p>
+            <h2 className="mt-3 text-xl font-semibold text-fg md:text-[1.35rem]">
+              Un problème avec Notice ?
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
+              Si vous rencontrez un problème, décrivez simplement ce qui s’est
+              passé dans le formulaire. Plus votre description est précise, plus
+              il sera facile de vous aider.
+            </p>
+
+            <p className="mt-6 text-[15px] leading-relaxed text-fg">
+              Pensez, si possible, à préciser :
+            </p>
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-fg-secondary">
+              {PRECISIONS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+
+            <p className="mt-6 text-[15px] leading-relaxed text-fg-secondary">
+              Vous n’avez pas besoin de connaître les détails techniques.
+              Décrivez simplement le problème avec vos mots.
+            </p>
+
+            <div className="mt-8 border-t border-border pt-6">
+              <p className="text-[15px] font-medium text-fg">
+                Depuis Notice aussi
+              </p>
+              <p className="mt-2 text-[15px] leading-relaxed text-fg-secondary">
+                Vous pouvez également signaler un problème directement depuis le
+                logiciel, dans les paramètres. Depuis ce menu, vous pouvez aussi
+                envoyer des logs techniques — sans aucune de vos données
+                métier — pour nous aider à mieux comprendre l’erreur.
+              </p>
+            </div>
+          </aside>
+        </div>
       </Container>
     </Section>
   )
