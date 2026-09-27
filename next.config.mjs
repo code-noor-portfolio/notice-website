@@ -12,9 +12,9 @@ const nextConfig = {
 
     return [
       { source: '/cgu', destination: '/cgv', permanent: false },
+      { source: '/bientot-disponible', destination: '/telecharger', permanent: false },
       // Vitrine : pas de tunnel d’achat en production ; ouvert en `next dev` (branche Stripe).
       ...achatClosed,
-      { source: '/telecharger', destination: '/', permanent: false },
     ]
   },
 }

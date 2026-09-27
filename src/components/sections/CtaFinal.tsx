@@ -20,14 +20,14 @@ export function CtaFinal() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
-              href="/bientot-disponible"
+              href="/acheter"
               size="lg"
               className="bg-white text-navy-700 hover:bg-slate-50"
             >
               Acheter Notice
             </Button>
             <Button
-              href="/bientot-disponible"
+              href="/telecharger"
               variant="secondary"
               size="lg"
               className="bg-transparent border-white/20 text-white hover:bg-white/10"

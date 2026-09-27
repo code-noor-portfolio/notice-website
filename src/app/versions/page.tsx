@@ -25,7 +25,7 @@ export default function VersionsPage() {
             Première version publique — devis, factures, Factur-X, licence à vie.
           </p>
           <PendingLink
-            href="/bientot-disponible"
+            href="/telecharger"
             className="inline-block mt-4 text-sm text-navy-500 hover:underline"
           >
             Page téléchargement →

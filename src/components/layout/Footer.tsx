@@ -9,7 +9,7 @@ const columns = [
     links: [
       { label: 'Fonctionnalités', href: '/fonctionnalites' },
       { label: 'Tarifs', href: '/tarifs' },
-      { label: 'Télécharger', href: '/bientot-disponible' },
+      { label: 'Télécharger', href: '/telecharger' },
     ],
   },
   {

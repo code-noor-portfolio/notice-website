@@ -5,7 +5,7 @@ import { CTA } from '@/constants/site'
 
 const ACHETER = {
   label: 'Acheter Notice',
-  href: '/bientot-disponible',
+  href: CTA.acheter.href,
 } as const
 
 export function CtaFinal() {
