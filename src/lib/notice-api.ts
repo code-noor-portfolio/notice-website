@@ -165,6 +165,74 @@ export async function purchaseLicense(
   }
 }
 
+export interface ReleaseInfo {
+  channel: string
+  latestVersion: string
+  recommendedVersion: string
+  minSupported: string
+  mandatory: boolean
+  downloadUrlMac: string
+  downloadUrlWin: string
+  notes: string
+  sha256?: string
+}
+
+function asNonEmptyString(value: unknown): string {
+  return typeof value === 'string' ? value : ''
+}
+
+export function parseReleaseInfo(json: unknown): ReleaseInfo {
+  const root =
+    json && typeof json === 'object' ? (json as Record<string, unknown>) : {}
+  const dataRaw =
+    root.data && typeof root.data === 'object'
+      ? (root.data as Record<string, unknown>)
+      : root
+  const latestVersion = asNonEmptyString(dataRaw.latestVersion)
+  if (!latestVersion) {
+    throw new Error('Téléchargement temporairement indisponible')
+  }
+  return {
+    channel: asNonEmptyString(dataRaw.channel) || 'stable',
+    latestVersion,
+    recommendedVersion: asNonEmptyString(dataRaw.recommendedVersion),
+    minSupported: asNonEmptyString(dataRaw.minSupported),
+    mandatory: dataRaw.mandatory === true,
+    downloadUrlMac: asNonEmptyString(dataRaw.downloadUrlMac).trim(),
+    downloadUrlWin: asNonEmptyString(dataRaw.downloadUrlWin).trim(),
+    notes: asNonEmptyString(dataRaw.notes),
+    sha256: asNonEmptyString(dataRaw.sha256) || undefined,
+  }
+}
+
+/**
+ * Public stable release via the Next.js server proxy.
+ * Never call the Cloud Functions URL from the browser for downloads.
+ */
+export async function getStableRelease(): Promise<ReleaseInfo> {
+  let res: Response
+  try {
+    res = await fetch('/api/releases/stable', {
+      headers: { Accept: 'application/json' },
+    })
+  } catch {
+    throw new Error('Téléchargement temporairement indisponible')
+  }
+
+  let json: unknown = {}
+  try {
+    json = await res.json()
+  } catch {
+    throw new Error('Téléchargement temporairement indisponible')
+  }
+
+  if (!res.ok) {
+    throw new Error('Téléchargement temporairement indisponible')
+  }
+
+  return parseReleaseInfo(json)
+}
+
 export async function verifyLicense(
   licenseKey: string,
   siret: string

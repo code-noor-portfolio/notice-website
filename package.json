@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test src/lib/admin/admin.test.ts",
+    "test": "tsx --test src/lib/admin/admin.test.ts src/lib/notice-api.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

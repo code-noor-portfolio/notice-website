@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { TelechargerOsDownloads } from '@/components/telecharger/TelechargerOsDownloads'
 
 const DEMO_POINTS = [
   'Découvrez l’interface et la navigation.',
@@ -131,51 +131,7 @@ export function TelechargerContent() {
             </p>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
-            <article className="rounded-xl border border-border bg-surface p-6 text-center shadow-soft sm:p-8">
-              <h3 className="text-lg font-semibold text-fg">
-                Notice pour Windows
-              </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-fg-secondary">
-                Pour les ordinateurs Windows.
-              </p>
-              <div className="mt-6">
-                <Button
-                  disabled
-                  size="lg"
-                  className="w-full"
-                  aria-label="Télécharger pour Windows — bientôt disponible"
-                >
-                  Télécharger pour Windows
-                </Button>
-                <p className="mt-3 text-sm text-fg-tertiary">
-                  Bientôt disponible
-                </p>
-              </div>
-            </article>
-
-            <article className="rounded-xl border border-border bg-surface p-6 text-center shadow-soft sm:p-8">
-              <h3 className="text-lg font-semibold text-fg">
-                Notice pour macOS
-              </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-fg-secondary">
-                Pour les ordinateurs Mac.
-              </p>
-              <div className="mt-6">
-                <Button
-                  disabled
-                  size="lg"
-                  className="w-full"
-                  aria-label="Télécharger pour macOS — bientôt disponible"
-                >
-                  Télécharger pour macOS
-                </Button>
-                <p className="mt-3 text-sm text-fg-tertiary">
-                  Bientôt disponible
-                </p>
-              </div>
-            </article>
-          </div>
+          <TelechargerOsDownloads />
         </Container>
       </Section>
 

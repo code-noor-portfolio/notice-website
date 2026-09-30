@@ -44,6 +44,20 @@ export function Button({
   const classes = cn(base, variants[variant], sizes[size], className)
 
   if (href && !isCommerceHref(href)) {
+    const external =
+      href.startsWith('https://') || href.startsWith('http://')
+    if (external) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          aria-label={ariaLabel}
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      )
+    }
     return (
       <Link href={href} className={classes} aria-label={ariaLabel}>
         {children}
