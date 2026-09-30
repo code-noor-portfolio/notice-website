@@ -14,7 +14,8 @@ const PUBLIC_KEYS = [
   'downloadUrlMac',
   'downloadUrlWin',
   'notes',
-  'sha256',
+  'sha256Mac',
+  'sha256Win',
 ] as const
 
 function noticeApiBase(): string {
@@ -40,9 +41,9 @@ function pickPublicRelease(raw: unknown): Record<string, unknown> | null {
       out[key] = source[key] === true
       continue
     }
-    if (key === 'sha256') {
-      const sha = typeof source.sha256 === 'string' ? source.sha256 : ''
-      if (sha) out.sha256 = sha
+    if (key === 'sha256Mac' || key === 'sha256Win') {
+      const sha = typeof source[key] === 'string' ? source[key] : ''
+      if (sha) out[key] = sha
       continue
     }
     out[key] = typeof source[key] === 'string' ? source[key] : ''

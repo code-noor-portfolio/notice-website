@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { getStableRelease, type ReleaseInfo } from '@/lib/notice-api'
+import { getStableRelease, isPublicDownloadUrl, type ReleaseInfo } from '@/lib/notice-api'
 
 type LoadState = 'loading' | 'ready' | 'unavailable'
 
@@ -23,7 +23,7 @@ function OsCard({
   ariaLabel: string
   hint: string
 }) {
-  const enabled = Boolean(href)
+  const enabled = isPublicDownloadUrl(href)
   return (
     <article className="rounded-xl border border-border bg-surface p-6 text-center shadow-soft sm:p-8">
       <h3 className="text-lg font-semibold text-fg">{title}</h3>
@@ -78,8 +78,12 @@ export function TelechargerOsDownloads() {
     }
   }, [])
 
-  const macUrl = state === 'ready' ? release?.downloadUrlMac ?? '' : ''
-  const winUrl = state === 'ready' ? release?.downloadUrlWin ?? '' : ''
+  const macUrl = isPublicDownloadUrl(release?.downloadUrlMac ?? '')
+    ? (release?.downloadUrlMac ?? '')
+    : ''
+  const winUrl = isPublicDownloadUrl(release?.downloadUrlWin ?? '')
+    ? (release?.downloadUrlWin ?? '')
+    : ''
   const version = state === 'ready' ? release?.latestVersion.trim() ?? '' : ''
   const versionHint = version ? `Version ${version}` : ''
 

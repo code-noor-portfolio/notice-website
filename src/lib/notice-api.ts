@@ -174,11 +174,16 @@ export interface ReleaseInfo {
   downloadUrlMac: string
   downloadUrlWin: string
   notes: string
-  sha256?: string
+  sha256Mac?: string
+  sha256Win?: string
 }
 
 function asNonEmptyString(value: unknown): string {
   return typeof value === 'string' ? value : ''
+}
+
+export function isPublicDownloadUrl(url: string): boolean {
+  return url.startsWith('https://')
 }
 
 export function parseReleaseInfo(json: unknown): ReleaseInfo {
@@ -192,16 +197,19 @@ export function parseReleaseInfo(json: unknown): ReleaseInfo {
   if (!latestVersion) {
     throw new Error('Téléchargement temporairement indisponible')
   }
+  const downloadUrlMac = asNonEmptyString(dataRaw.downloadUrlMac).trim()
+  const downloadUrlWin = asNonEmptyString(dataRaw.downloadUrlWin).trim()
   return {
     channel: asNonEmptyString(dataRaw.channel) || 'stable',
     latestVersion,
     recommendedVersion: asNonEmptyString(dataRaw.recommendedVersion),
     minSupported: asNonEmptyString(dataRaw.minSupported),
     mandatory: dataRaw.mandatory === true,
-    downloadUrlMac: asNonEmptyString(dataRaw.downloadUrlMac).trim(),
-    downloadUrlWin: asNonEmptyString(dataRaw.downloadUrlWin).trim(),
+    downloadUrlMac: isPublicDownloadUrl(downloadUrlMac) ? downloadUrlMac : '',
+    downloadUrlWin: isPublicDownloadUrl(downloadUrlWin) ? downloadUrlWin : '',
     notes: asNonEmptyString(dataRaw.notes),
-    sha256: asNonEmptyString(dataRaw.sha256) || undefined,
+    sha256Mac: asNonEmptyString(dataRaw.sha256Mac) || undefined,
+    sha256Win: asNonEmptyString(dataRaw.sha256Win) || undefined,
   }
 }
 
