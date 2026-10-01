@@ -1,0 +1,61 @@
+export const DOC_NAV = [
+  { id: 'installer', num: '01', label: 'Installer Notice' },
+  { id: 'modes', num: '02', label: 'Choisir un mode' },
+  { id: 'demo', num: '03', label: 'Mode démo' },
+  { id: 'essai', num: '04', label: 'Essai gratuit' },
+  { id: 'configurer', num: '05', label: 'Configurer votre entreprise' },
+  { id: 'premier-devis', num: '06', label: 'Créer votre premier devis' },
+  { id: 'factur-x', num: '07', label: 'Factur-X' },
+  { id: 'sauvegardes', num: '08', label: 'Sauvegardes' },
+  { id: 'exports', num: '09', label: 'Exports comptables' },
+  { id: 'rappels', num: '10', label: 'Rappels' },
+  { id: 'emails', num: '11', label: 'Emails' },
+  { id: 'entreprise', num: '12', label: 'Informations de l’entreprise' },
+  { id: 'contact', num: '13', label: 'Nous contacter' },
+] as const
+
+export type DocNavId = (typeof DOC_NAV)[number]['id']
+
+function capturePath(fileName: string) {
+  return encodeURI(`/Screenshot documentation/${fileName}`)
+}
+
+export const CAPTURE = {
+  1: capturePath('Capture 1.png'),
+  2: capturePath('Capture 2.png'),
+  3: capturePath('Capture 3.png'),
+  4: capturePath('Capture 4.png'),
+  5: capturePath('Capture 5.png'),
+  '5mac': capturePath('Capture 5 mac.png'),
+  6: capturePath('Capture 6.png'),
+  7: capturePath('Capture 7.png'),
+  8: capturePath('Capture 8.png'),
+  9: capturePath('Capture 9.png'),
+  10: capturePath('Capture 10.png'),
+  11: capturePath('Capture 11.png'),
+  12: capturePath('Capture 12.png'),
+  13: capturePath('Capture 13.png'),
+  14: capturePath('Capture 14.png'),
+  15: capturePath('Capture 15.png'),
+  16: capturePath('Capture 16.png'),
+  18: capturePath('Capture 18.png'),
+  19: capturePath('Capture 19.png'),
+  20: capturePath('Capture 20.png'),
+  21: capturePath('Capture 21.png'),
+  23: capturePath('Capture 23.png'),
+  24: capturePath('Capture 24.png'),
+  25: capturePath('Capture 25.png'),
+  26: capturePath('Capture 26.png'),
+  28: capturePath('Capture 28.png'),
+  29: capturePath('Capture 29.png'),
+  30: capturePath('Capture 30.png'),
+  31: capturePath('Capture 31.png'),
+  32: capturePath('Capture 32.png'),
+  33: capturePath('Capture 33.png'),
+  34: capturePath('Capture 34.png'),
+  35: capturePath('Capture 35.png'),
+  36: capturePath('Capture 36.png'),
+  37: capturePath('Capture 37.png'),
+  38: capturePath('Capture 38.png'),
+  39: capturePath('Capture 39.png'),
+} as const
